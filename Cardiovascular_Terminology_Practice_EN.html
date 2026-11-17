@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cardiovascular Terminology</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=PT+Serif:wght@400;700&display=swap">
+<style>
+/* Layout: una columna de lectura (máx. 720px), navegación de actividades en pestañas, una actividad visible a la vez. */
+:root {
+  --bg: #fbfaf9;
+  --surface: #ffffff;
+  --fg: #1d2224;
+  --muted: #5b6468;
+  --line: #dcdfe0;
+  --accent: #c94a00;
+  --accent-ink: #ffffff;
+  --accent-soft: #fbe9de;
+  --ok: #1d6f68;
+  --ok-soft: #dff1ee;
+  --bad: #a8261c;
+  --bad-soft: #f9e2df;
+  --font-display: "PT Serif", Georgia, "Times New Roman", serif;
+  --font-body: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #131718; --surface: #1c2224; --fg: #eceeee; --muted: #a2adb0; --line: #353e41;
+    --accent: #ff8a4c; --accent-ink: #1a0d04; --accent-soft: #3a2518;
+    --ok: #6fd0c5; --ok-soft: #173532; --bad: #ff9a90; --bad-soft: #3d1f1c;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #131718; --surface: #1c2224; --fg: #eceeee; --muted: #a2adb0; --line: #353e41;
+  --accent: #ff8a4c; --accent-ink: #1a0d04; --accent-soft: #3a2518;
+  --ok: #6fd0c5; --ok-soft: #173532; --bad: #ff9a90; --bad-soft: #3d1f1c;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 16px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 24px 48px;
+}
+main { max-width: 720px; margin: 0 auto; }
+header { padding-bottom: 20px; }
+.kicker { font-size: 12px; letter-spacing: .09em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin: 0 0 8px; }
+h1 { font-family: var(--font-display); font-weight: 400; font-size: clamp(28px, 6vw, 40px); line-height: 1.15; margin: 0 0 12px; text-wrap: balance; }
+.lede { color: var(--muted); margin: 0; max-width: 60ch; }
+nav { display: flex; gap: 8px; overflow-x: auto; padding: 4px 0 12px; scrollbar-width: thin; }
+nav button {
+  flex: 0 0 auto; font: inherit; font-size: 14px; font-weight: 500; color: var(--fg); background: var(--surface);
+  border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px;
+}
+nav button[aria-selected="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+nav button .dot { width: 8px; height: 8px; border-radius: 50%; border: 1.5px solid currentColor; opacity: .55; }
+nav button.done .dot { background: var(--ok); border-color: var(--ok); opacity: 1; }
+nav button[aria-selected="true"].done .dot { background: var(--accent-ink); border-color: var(--accent-ink); }
+button:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+section.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 24px 20px; }
+h2 { font-family: var(--font-display); font-weight: 400; font-size: 24px; margin: 0 0 6px; text-wrap: balance; }
+.how { color: var(--muted); margin: 0 0 20px; font-size: 15px; }
+.count { font-size: 13px; color: var(--muted); margin: 0 0 8px; font-variant-numeric: tabular-nums; }
+.q { font-family: var(--font-display); font-weight: 400; font-size: 20px; line-height: 1.35; margin: 0 0 16px; }
+.opts { display: grid; gap: 10px; }
+.opt {
+  font: inherit; text-align: left; color: var(--fg); background: var(--bg); border: 1px solid var(--line);
+  border-radius: 8px; padding: 12px 14px; cursor: pointer; min-width: 0;
+}
+.opt:hover:not(:disabled) { border-color: var(--accent); }
+.opt:disabled { cursor: default; }
+.opt.right { background: var(--ok-soft); border-color: var(--ok); }
+.opt.wrong { background: var(--bad-soft); border-color: var(--bad); }
+.fb { margin-top: 16px; min-height: 0; }
+.fb p { margin: 0 0 12px; }
+.fb .ok { color: var(--ok); font-weight: 700; }
+.fb .no { color: var(--bad); font-weight: 700; }
+.btn {
+  font: inherit; font-weight: 700; background: var(--accent); color: var(--accent-ink); border: 0; border-radius: 8px;
+  padding: 11px 18px; cursor: pointer;
+}
+.btn.ghost { background: transparent; color: var(--fg); border: 1px solid var(--line); font-weight: 500; }
+.row { display: flex; gap: 10px; flex-wrap: wrap; }
+.score { font-family: var(--font-display); font-size: 40px; margin: 0 0 4px; font-variant-numeric: tabular-nums; }
+.end p { margin: 0 0 16px; }
+.next-step { background: var(--accent-soft); border-radius: 8px; padding: 14px 16px; }
+/* tarjetas */
+.card {
+  display: block; width: 100%; min-height: 200px; font: inherit; color: var(--fg); background: var(--bg);
+  border: 1px solid var(--line); border-radius: 10px; padding: 24px 20px; cursor: pointer; text-align: center;
+  display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 10px; margin-bottom: 14px;
+}
+.card .term { font-family: var(--font-display); font-size: 28px; line-height: 1.2; }
+.card .hint { font-size: 13px; color: var(--muted); }
+.card .def { font-size: 18px; max-width: 40ch; }
+.card .root { font-size: 14px; color: var(--accent); font-weight: 700; }
+.card.flipped { background: var(--accent-soft); border-color: var(--accent); }
+/* pareo */
+.match { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 14px; }
+.match .col { display: grid; gap: 10px; align-content: start; }
+.match .opt { text-align: center; }
+.match .opt.sel { border-color: var(--accent); background: var(--accent-soft); }
+.match .opt.shake { border-color: var(--bad); background: var(--bad-soft); }
+.tries { font-size: 14px; color: var(--muted); margin-top: 14px; font-variant-numeric: tabular-nums; }
+.suffixes { margin-top: 20px; border-top: 1px solid var(--line); padding-top: 16px; }
+.suffixes h3 { font-family: var(--font-display); font-weight: 400; font-size: 18px; margin: 0 0 10px; }
+.suffixes dl { display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; margin: 0; font-size: 15px; }
+.suffixes dt { font-weight: 700; color: var(--accent); }
+.suffixes dd { margin: 0; }
+@media (max-width: 420px) { .match { gap: 8px; } .card .term { font-size: 24px; } }
+@media (prefers-reduced-motion: no-preference) { .opt, nav button { transition: background .15s, border-color .15s; } }
+body { margin: 0; }
+</style>
+</head>
+<body>
+
+<main>
+  <header>
+    <p class="kicker">RT-200 · Independent study</p>
+    <h1>Cardiovascular System Terminology</h1>
+    <p class="lede">Practice with the six activities, in any order you like. They are for review and are not graded. When you finish, go back to Elentra to take the test.</p>
+  </header>
+  <nav id="tabs" role="tablist" aria-label="Activities"></nav>
+  <section class="panel" id="panel" role="tabpanel" aria-live="polite"></section>
+</main>
+
+<script>
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+
+/* ---------- Data ---------- */
+const CARDS = [
+  ["Systole","Contraction phase of the heart that pushes blood out to the arteries and the lungs.",""],
+  ["Diastole","Relaxation phase that allows the chambers to fill.",""],
+  ["Pericardium","Fibroserous membrane that surrounds and protects the heart.",""],
+  ["Myocardium","Middle muscular layer of the heart; responsible for its ability to contract.","myo = muscle · cardio = heart"],
+  ["Endocardium","Inner layer that lines the heart chambers and the valves.",""],
+  ["Tricuspid valve","Located between the right atrium and the right ventricle; keeps blood flowing in one direction.",""],
+  ["Aorta","The largest artery in the body; it arises from the left ventricle and distributes oxygenated blood.",""],
+  ["Heart rate","Number of beats per minute. In healthy adults: 60–100 bpm.",""],
+  ["Cardiomegaly","Enlargement of the heart.","cardio = heart · megaly = enlargement"],
+  ["Vasoconstriction","Narrowing of the diameter of the vessels.","vaso = vessel that carries blood"],
+  ["Vasodilation","Widening of the diameter of the vessels.","vaso = vessel that carries blood"],
+  ["Vasculitis","Inflammation of the blood vessels.","vascul- + -itis = inflammation"],
+  ["Arteriosclerosis","Hardening of the arteries.","arterio = artery · sclerosis = hardening"],
+  ["Venipuncture","Puncture of a vein.","veno = vein"],
+  ["Hemorrhage","Escape of blood from the vessels.","hemo = blood"],
+  ["Hematoma","Collection of blood in a tissue.","hemato = blood"],
+  ["Myocarditis","Inflammation of the heart muscle.","myo + cardio + -itis"],
+  ["Arteriole","Small branch of an artery.","arterio = artery"],
+  ["Venule","Small vein.","veno = vein"]
+];
+
+const ROOTS = [
+  ["cardio","heart"],["vaso","vessel that carries blood"],["arterio","artery"],
+  ["veno","vein"],["hemo / hemato","blood"],["myo","muscle"]
+];
+
+/* In every question, the first option (o[0]) is the correct one; the order is shuffled when shown. */
+const Q_DESCOMPONER = [
+  {q:"Cardiomegaly = cardio + megaly. What does it mean?",o:["Enlargement of the heart","Inflammation of the heart","Study of the heart","Disease of the muscle"],e:"Cardio is heart and -megaly is enlargement."},
+  {q:"What does vasculitis mean?",o:["Inflammation of the blood vessels","Hardening of the vessels","Study of the vessels","Widening of the vessels"],e:"Vascul(o) refers to vessels and the suffix -itis means inflammation."},
+  {q:"What does myocarditis mean?",o:["Inflammation of the heart muscle","Disease of the muscle","Enlargement of the heart","Inflammation of the arteries"],e:"Myo (muscle) + cardio (heart) + itis (inflammation)."},
+  {q:"What does venography mean?",o:["Radiographic study of the veins","Puncture of a vein","Radiographic study of the arteries","Inflammation of the veins"],e:"Veno is vein and -graphy is recording by imaging. Arteriography is the equivalent for the arteries."},
+  {q:"What does hematology mean?",o:["Study of the blood","Escape of blood from the vessels","Collection of blood in a tissue","Protein that carries oxygen"],e:"Hemato is blood and -logy is study."},
+  {q:"What does arteriosclerosis mean?",o:["Hardening of the arteries","Inflammation of the arteries","Small branch of an artery","Radiographic study of the arteries"],e:"Arterio is artery and sclerosis is hardening."},
+  {q:"What does myopathy mean?",o:["Disease of the muscle","Inflammation of the muscle","Muscle of the heart","Study of the muscle"],e:"Myo is muscle and -pathy is disease."},
+  {q:"What does vasoconstriction mean?",o:["Narrowing of the vessel diameter","Widening of the vessel diameter","Inflammation of the vessels","Puncture of a vessel"],e:"Constriction means narrowing. The opposite is vasodilation."},
+  {q:"What is a venule?",o:["A small vein","A small artery","A microscopic exchange vessel","A heart valve"],e:"The suffix -ule means small: an arteriole is a small artery and a venule is a small vein."},
+  {q:"A hematoma is…",o:["a collection of blood in a tissue","blood escaping from the vessels","the study of the blood","a blood protein"],e:"It differs from a hemorrhage, which is blood escaping from the vessels."}
+];
+
+const Q_CIRCULACION = [
+  {q:"High-pressure vessels with thick, elastic walls that carry blood away from the heart:",o:["Arteries","Veins","Capillaries"],e:"Arteries carry blood away from the heart. Note: the pulmonary artery is the exception and carries deoxygenated blood."},
+  {q:"Low-pressure vessels that have internal valves:",o:["Veins","Arteries","Capillaries"],e:"The valves keep blood from flowing backward on its way back to the heart."},
+  {q:"Microscopic vessels where oxygen, nutrients, and waste are exchanged:",o:["Capillaries","Arteries","Veins"],e:"Capillaries connect arteries and veins and allow exchange with the tissues."},
+  {q:"The atria are the…",o:["upper chambers, which receive incoming blood","lower chambers, which pump blood","upper chambers, which pump blood to the body","lower chambers, which receive incoming blood"],e:"The ventricles, at the bottom, are the ones that pump blood to the body and the lungs."},
+  {q:"The aorta arises from the…",o:["left ventricle","right ventricle","left atrium","right atrium"],e:"It is the largest artery in the body and distributes oxygenated blood."},
+  {q:"The tricuspid valve is located between…",o:["the right atrium and the right ventricle","the left atrium and the left ventricle","the left ventricle and the aorta","the right ventricle and the pulmonary artery"],e:"It keeps blood flowing in one direction. The mitral valve does this on the left side."},
+  {q:"Which layer of the heart is the middle muscular layer?",o:["Myocardium","Endocardium","Pericardium"],e:"Myo = muscle. The endocardium is the inner layer and the pericardium is the membrane that surrounds the heart."},
+  {q:"Which structure lines the inside of the heart chambers and the valves?",o:["Endocardium","Myocardium","Pericardium"],e:"Endo means within."},
+  {q:"Systole is the phase of…",o:["contraction, which pushes blood out","relaxation, which allows filling","valve closure","gas exchange"],e:"Diastole is the relaxation that allows the chambers to fill."},
+  {q:"The heart is located in the…",o:["mediastinum, tilted slightly to the left","mediastinum, tilted to the right","upper abdomen","right pleural space"],e:"It is a hollow muscular organ located in the mediastinum."}
+];
+
+const Q_ESTUDIOS = [
+  {q:"The electrocardiogram (ECG) records…",o:["the electrical activity of the heart","real-time images of the chambers","blockages in the arteries","cholesterol levels"],e:"It detects arrhythmias, heart attacks, and other abnormalities."},
+  {q:"The echocardiogram uses…",o:["ultrasound","X-rays with contrast","an electrical recording","a blood sample"],e:"It creates real-time images of the structure and function of the heart."},
+  {q:"Which study uses contrast medium to visualize arteries and veins and detect blockages?",o:["Angiography","Echocardiogram","Electrocardiogram","Blood test"],e:"Angiography is an imaging technique that uses contrast."},
+  {q:"Troponins are markers of heart damage that are detected in…",o:["a blood test","an electrocardiogram","an echocardiogram","an arteriography"],e:"The blood test also measures cholesterol and triglycerides."},
+  {q:"Which of these studies does NOT use ionizing radiation?",o:["Echocardiogram","Angiography","Arteriography","Venography"],e:"Ultrasound does not use ionizing radiation. Angiography, arteriography, and venography are radiographic studies with contrast."},
+  {q:"Suspected arrhythmia: which study records the heart's rhythm?",o:["Electrocardiogram","Venography","Angiography","Hematology"],e:"An arrhythmia is an abnormal rhythm: fast (tachycardia), slow (bradycardia), or irregular (fibrillation)."},
+  {q:"What is the radiographic study of the arteries called?",o:["Arteriography","Venography","Echocardiography","Hematology"],e:"Arterio = artery, -graphy = recording by imaging."},
+  {q:"In an acute myocardial infarction…",o:["blood flow to an area of the heart muscle is blocked","the heart rhythm is irregular with no tissue damage","blood pressure is chronically elevated","the heart does not pump efficiently"],e:"The blockage causes tissue necrosis. The other options describe arrhythmia, hypertension, and heart failure."}
+];
+
+const Q_FINAL = [
+  {q:"Cardio = heart. What is a cardiologist?",o:["A heart specialist","A study of the heart","An enlargement of the heart","An inflammation of the heart"],e:"-logist refers to the specialist; -logy is the study."},
+  {q:"What does vasodilation mean?",o:["Widening of the vessel diameter","Narrowing of the vessel diameter","Inflammation of the vessels","Hardening of the vessels"],e:"To dilate is to widen."},
+  {q:"Which vessels return blood to the heart?",o:["Veins","Arteries","Capillaries","Arterioles"],e:"They are low-pressure vessels with internal valves."},
+  {q:"The normal heart rate in a healthy adult is…",o:["60–100 bpm","30–50 bpm","100–140 bpm","140–180 bpm"],e:"Below that range is bradycardia and above it is tachycardia."},
+  {q:"What is the difference between a hemorrhage and a hematoma?",o:["A hemorrhage is blood escaping from the vessels and a hematoma is blood collected in a tissue","They are the same thing","A hemorrhage is a collection and a hematoma is inflammation","A hemorrhage occurs only in veins"],e:"Both use the root hemo/hemato (blood)."},
+  {q:"The layer that surrounds and protects the heart is the…",o:["pericardium","myocardium","endocardium","mediastinum"],e:"The prefix peri- means around."},
+  {q:"Which study is used to see the inside of the arteries with contrast?",o:["Angiography","Electrocardiogram","Troponin test","Venipuncture"],e:"Angiography visualizes arteries and veins to detect blockages."},
+  {q:"Hypertension is…",o:["chronically elevated blood pressure","an irregular heart rhythm","the blockage of a coronary artery","an enlargement of the heart"],e:"It is the main risk factor for stroke and heart attack."},
+  {q:"Myopathy, myocarditis, and myocardium share the root myo-, which means…",o:["muscle","blood","vein","heart"],e:"Myo = muscle."},
+  {q:"Systole and diastole are…",o:["the contraction and relaxation phases of the cardiac cycle","two heart valves","two layers of the heart","two types of arteries"],e:"Systole: contraction that pushes blood out. Diastole: relaxation that allows filling."},
+  {q:"To perform a venipuncture, the technologist accesses…",o:["a vein","an artery","a pulmonary capillary","the pericardium"],e:"Veno = vein; puncture = a prick."},
+  {q:"A patient with tachycardia has…",o:["a heart rhythm that is too fast","a heart rhythm that is too slow","blood pressure that is too low","hardened vessels"],e:"Bradycardia is the opposite: a slow rhythm."}
+];
+
+/* ---------- Activity: flashcards ---------- */
+function mountCards(root, done){
+  let queue, known, flipped;
+  function start(){queue=shuffle(CARDS.map((c,i)=>i));known=0;flipped=false;draw()}
+  function draw(){
+    if(!queue.length){
+      root.innerHTML=`<div class="end"><p class="score">${CARDS.length} of ${CARDS.length}</p><p>You marked all the cards as learned.</p><button class="btn" id="again">Study again</button></div>`;
+      root.querySelector('#again').onclick=start; done(); return;
+    }
+    const c=CARDS[queue[0]];
+    root.innerHTML=`<p class="count">Learned ${known} of ${CARDS.length} · ${queue.length} left</p>
+      <button class="card ${flipped?'flipped':''}" id="card" aria-label="Flip card">
+        ${flipped?`<span class="def">${c[1]}</span>${c[2]?`<span class="root">${c[2]}</span>`:''}`:`<span class="term">${c[0]}</span><span class="hint">Tap to see the definition</span>`}
+      </button>
+      <div class="row" ${flipped?'':'hidden'}>
+        <button class="btn ghost" id="rev">Review again</button><button class="btn" id="know">I know it</button>
+      </div>`;
+    root.querySelector('#card').onclick=()=>{flipped=!flipped;draw()};
+    if(flipped){
+      root.querySelector('#know').onclick=()=>{queue.shift();known++;flipped=false;draw()};
+      root.querySelector('#rev').onclick=()=>{queue.push(queue.shift());flipped=false;draw()};
+    }
+  }
+  start();
+}
+
+/* ---------- Activity: root matching ---------- */
+function mountMatch(root, done){
+  let sel=null, matched=0, tries=0;
+  const left=ROOTS.map((r,i)=>({t:r[0],i}));
+  const right=shuffle(ROOTS.map((r,i)=>({t:r[1],i})));
+  root.innerHTML=`<div class="match"><div class="col" id="L"></div><div class="col" id="R"></div></div>
+    <p class="tries" id="tries" aria-live="polite">Matches: 0 of ${ROOTS.length} · Attempts: 0</p>
+    <div class="suffixes"><h3>Common suffixes</h3><dl>
+      <dt>-itis</dt><dd>inflammation</dd><dt>-megaly</dt><dd>enlargement</dd><dt>-graphy</dt><dd>recording by imaging</dd>
+      <dt>-pathy</dt><dd>disease</dd><dt>-logy</dt><dd>study</dd><dt>-ule / -iole</dt><dd>small</dd></dl></div>`;
+  const L=root.querySelector('#L'),R=root.querySelector('#R'),info=root.querySelector('#tries');
+  function mk(item,side,box){
+    const b=document.createElement('button');b.className='opt';b.textContent=item.t;b.dataset.i=item.i;b.dataset.side=side;
+    b.onclick=()=>pick(b,side);box.appendChild(b);
+  }
+  left.forEach(x=>mk(x,'L',L));right.forEach(x=>mk(x,'R',R));
+  function pick(b,side){
+    if(side==='L'){
+      L.querySelectorAll('.sel').forEach(e=>e.classList.remove('sel'));
+      sel=b;b.classList.add('sel');return;
+    }
+    if(!sel)return;
+    tries++;
+    if(sel.dataset.i===b.dataset.i){
+      [sel,b].forEach(e=>{e.classList.remove('sel');e.classList.add('right');e.disabled=true});
+      sel=null;matched++;
+    }else{
+      b.classList.add('shake');setTimeout(()=>b.classList.remove('shake'),500);
+    }
+    info.textContent=`Matches: ${matched} of ${ROOTS.length} · Attempts: ${tries}`;
+    if(matched===ROOTS.length){info.innerHTML=`<strong>Completed in ${tries} attempts.</strong> You can move on to the next activity.`;done()}
+  }
+}
+
+/* ---------- Question engine ---------- */
+function mountQuiz(root, qs, opt, done){
+  let order,i,score;
+  function start(){order=shuffle(qs);i=0;score=0;show()}
+  function show(){
+    if(i>=order.length){return end()}
+    const q=order[i];
+    root.innerHTML=`<p class="count">Question ${i+1} of ${order.length}</p><h3 class="q">${q.q}</h3><div class="opts"></div><div class="fb" aria-live="polite"></div>`;
+    const box=root.querySelector('.opts'),fb=root.querySelector('.fb');
+    shuffle(q.o).forEach(t=>{
+      const b=document.createElement('button');b.className='opt';b.textContent=t;
+      b.onclick=()=>{
+        const ok=t===q.o[0];
+        if(ok)score++;
+        box.querySelectorAll('.opt').forEach(x=>{x.disabled=true;if(x.textContent===q.o[0])x.classList.add('right')});
+        if(!ok)b.classList.add('wrong');
+        fb.innerHTML=`<p><span class="${ok?'ok':'no'}">${ok?'Correct.':'Incorrect.'}</span> ${q.e}</p><button class="btn" id="nx">${i+1<order.length?'Next':'See result'}</button>`;
+        fb.querySelector('#nx').onclick=()=>{i++;show()};
+        fb.querySelector('#nx').focus();
+      };
+      box.appendChild(b);
+    });
+  }
+  function end(){
+    const pct=Math.round(score/order.length*100);
+    root.innerHTML=`<div class="end"><p class="score">${score} of ${order.length}</p><p>${pct>=80?'Very good. You have mastered this content.':pct>=60?'You are on the right track. Review the flashcards for what gave you trouble.':'I recommend going back to the flashcards and the roots matching before trying again.'}</p>
+      ${opt.final?'<div class="next-step"><p style="margin:0"><strong>Next step:</strong> go back to the Elentra platform to take the test.</p></div><br>':''}
+      <button class="btn ghost" id="again">Try again</button></div>`;
+    root.querySelector('#again').onclick=start;
+    done();
+  }
+  start();
+}
+
+/* ---------- Tabs ---------- */
+const TABS = [
+  {id:"tarjetas",label:"Flashcards",title:"Term flashcards",how:"Tap the card to see the definition. Mark “I know it” or “Review again”.",run:(r,d)=>mountCards(r,d)},
+  {id:"raices",label:"Roots",title:"Greek and Latin roots",how:"Tap a root on the left and then its meaning on the right.",run:(r,d)=>mountMatch(r,d)},
+  {id:"descomponer",label:"Break it down",title:"Break the word down",how:"Separate each term into its parts to work out its meaning.",run:(r,d)=>mountQuiz(r,Q_DESCOMPONER,{},d)},
+  {id:"corazon",label:"Heart & vessels",title:"Heart and blood vessels",how:"Structures, layers, and types of vessels of the cardiovascular system.",run:(r,d)=>mountQuiz(r,Q_CIRCULACION,{},d)},
+  {id:"estudios",label:"Studies",title:"Studies and conditions",how:"Match each diagnostic study with what it shows or measures.",run:(r,d)=>mountQuiz(r,Q_ESTUDIOS,{},d)},
+  {id:"practica",label:"Final practice",title:"Final practice",how:"Mixed questions from the whole module, as a review before the test.",run:(r,d)=>mountQuiz(r,Q_FINAL,{final:true},d)}
+];
+const tabsEl=document.getElementById('tabs'),panel=document.getElementById('panel');
+const finished=new Set();
+function select(i){
+  tabsEl.querySelectorAll('button').forEach((b,k)=>b.setAttribute('aria-selected',k===i?'true':'false'));
+  const t=TABS[i];
+  panel.innerHTML=`<h2>${t.title}</h2><p class="how">${t.how}</p><div id="body"></div>`;
+  t.run(panel.querySelector('#body'),()=>{finished.add(t.id);tabsEl.children[i].classList.add('done')});
+  try{history.replaceState(null,'','#'+t.id)}catch(e){}
+}
+TABS.forEach((t,i)=>{
+  const b=document.createElement('button');b.setAttribute('role','tab');
+  b.innerHTML=`<span class="dot" aria-hidden="true"></span>${t.label}`;
+  b.onclick=()=>select(i);tabsEl.appendChild(b);
+});
+const start=Math.max(0,TABS.findIndex(t=>'#'+t.id===location.hash));
+select(start);
+</script>
+</body>
+</html>
